@@ -3,7 +3,7 @@ import java.io.*;
 
 
 
-public class swea_1226_미로_최태선 {
+public class SWEA_1226_미로_최태선 {
     static int[][] graph;
     static boolean[][] visited;
     static int[] di = {1,-1,0,0};
