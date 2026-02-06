@@ -35,6 +35,9 @@ public class SWEA_5215_햄버거다이어트_최태선 {
             if((bit & 1<<i) != 0){
                 sumVal += burger[i][0];
                 sumCal += burger[i][1];
+                if (sumCal>L){
+                    return;
+                }
             }
         }
         if(sumCal<=L){
