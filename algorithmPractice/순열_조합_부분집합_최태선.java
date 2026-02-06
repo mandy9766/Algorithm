@@ -1,4 +1,4 @@
-package d0205;
+package algorithmPractice;
 
 public class 순열_조합_부분집합_최태선 {
     
