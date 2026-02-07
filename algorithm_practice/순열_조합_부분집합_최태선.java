@@ -1,4 +1,4 @@
-package algorithmPractice;
+package algorithm_practice;
 
 public class 순열_조합_부분집합_최태선 {
     
