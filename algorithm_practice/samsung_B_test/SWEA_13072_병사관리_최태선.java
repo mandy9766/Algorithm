@@ -1,4 +1,4 @@
-package samsung_B_test;
+package algorithm_practice.samsung_B_test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

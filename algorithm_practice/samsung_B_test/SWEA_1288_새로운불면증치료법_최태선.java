@@ -1,4 +1,4 @@
-package samsung_B_test;
+package algorithm_practice.samsung_B_test;
 import java.util.*;
 import java.io.*;
 public class SWEA_1288_새로운불면증치료법_최태선 {
