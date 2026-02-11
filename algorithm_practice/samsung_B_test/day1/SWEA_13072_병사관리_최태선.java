@@ -3,10 +3,6 @@ package algorithm_practice.samsung_B_test.day1;
 import java.io.*;
 import java.util.*;
 
-
-
-
-
 class UserSolution
 {
 	public class Node{
