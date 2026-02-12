@@ -34,32 +34,26 @@ public class BJ_1600_말이되고픈원숭이_최태선 {
             }
         }
         deque = new ArrayDeque<>();
-        deque.add(new int[]{0,0,0,0});
+        deque.add(new int[]{0,0,0});
         dp[0][0][0] = 0;
         while(!deque.isEmpty()){
             int[] temp = deque.poll();
             int k = temp[0];
             int i = temp[1];
             int j = temp[2];
-            int count = temp[3];
-            if(dp[k][i][j] != -1 && dp[k][i][j]< count)
-                continue;
+            int count = dp[k][i][j];
 
+            
             // 말을 쓰는경우 8가지
             if(k<K){
                 for (int p=0;p<8;p++){
                     int ni = i+hi[p];
                     int nj = j+hj[p];
-                    if(ni>=0 && ni<H && nj>=0 && nj<W && graph[ni][nj] != 1){
-                        if(dp[k+1][ni][nj] == -1){
-                            dp[k+1][ni][nj] = count+1;
-                            deque.add(new int[]{k+1,ni,nj,count+1});
-                        }else {
-                            if(dp[k+1][ni][nj] > count +1){
-                                dp[k+1][ni][nj] = count+1;
-                                deque.add(new int[]{k+1,ni,nj,count+1});
-                            }
-                        }
+                    if (ni < 0 || ni >= H || nj < 0 || nj >= W) continue;
+                    if (graph[ni][nj] == 1) continue;
+                    if(dp[k+1][ni][nj] == -1){
+                        dp[k+1][ni][nj] = count+1;
+                        deque.add(new int[]{k+1,ni,nj});
                     }
                 }
             }
@@ -67,30 +61,16 @@ public class BJ_1600_말이되고픈원숭이_최태선 {
             for (int p=0;p<4;p++){
                 int ni = i+di[p];
                 int nj = j+dj[p];
-                if(ni>=0 && ni<H && nj>=0 && nj<W && graph[ni][nj] != 1){
-                    if(dp[k][ni][nj] == -1){
-                        dp[k][ni][nj] = count+1;
-                        deque.add(new int[]{k,ni,nj,count+1});
-                    }else {
-                        if(dp[k][ni][nj] > count +1){
-                            dp[k][ni][nj] = count+1;
-                            deque.add(new int[]{k,ni,nj,count+1});
-                        }
-                    }
+                if (ni < 0 || ni >= H || nj < 0 || nj >= W) continue;
+                if (graph[ni][nj] == 1) continue;
+                if (dp[k][ni][nj] == -1) {
+                    dp[k][ni][nj] = count + 1;
+                    deque.add(new int[]{k, ni, nj});
                 }
             }
 
         }
-        answer = Integer.MAX_VALUE;
-        for(int k=0;k<=K;k++){
-            if(dp[k][H-1][W-1] != -1)
-                answer = Math.min(dp[k][H-1][W-1],answer); 
-        }
-        if(answer == Integer.MAX_VALUE){
-            System.out.println(-1);
-        }else{
-            System.out.println(answer);
-        }
+        System.out.println(-1);
 
     }    
 }
