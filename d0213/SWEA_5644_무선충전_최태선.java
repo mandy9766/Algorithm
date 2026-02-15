@@ -33,20 +33,21 @@ public class SWEA_5644_무선충전_최태선 {
                 B[i] = Integer.parseInt(st.nextToken());
             }
             pq = new PriorityQueue<>((a,b)->Integer.compare(b[3], a[3])); // 파워 최대값부터
-            for(int i=0;i<M;i++){
+            for(int i=0;i<C;i++){
                 st = new StringTokenizer(br.readLine()," ");
-                int ni = Integer.parseInt(st.nextToken());
-                int nj = Integer.parseInt(st.nextToken());
+                int x = Integer.parseInt(st.nextToken())-1;
+                int y = Integer.parseInt(st.nextToken())-1;
                 int range = Integer.parseInt(st.nextToken());
                 int power = Integer.parseInt(st.nextToken());
-                pq.add(new int[]{ni,nj,range,power});
+                pq.add(new int[]{y,x,range,power});
             }
             int aI = 0;
             int aJ = 0;
             int bI = 9;
             int bJ = 9;
-            isUsedBC = new boolean[M];
-            BC = new int[M][10][10];
+            totalPower =0;
+            isUsedBC = new boolean[C];
+            BC = new int[C][10][10];
             int layer = 0;
             while(!pq.isEmpty()){
                 int[] temp = pq.poll();
@@ -54,54 +55,47 @@ public class SWEA_5644_무선충전_최태선 {
                 int j = temp[1];
                 int range = temp[2];
                 int power = temp[3];
-                setGraphBfs(layer,i,j,range,power);
+                setGraph(layer,i,j,range,power);
                 layer ++;
             }
-            for(int i=0;i<M;i++){
-                Arrays.fill(isUsedBC, false);
-                aI = aI + di[A[i]];
-                aJ = aJ + dj[A[i]];
-                bI = bI + di[B[i]];
-                bJ = bJ + dj[B[i]];
-                boolean aDone= false;
-                boolean bDone= false;
-                for(int m=0;m<C;m++){
-                    if(aDone == false){
-                        if(BC[m][aI][aI] != 0){
-                            totalPower += BC[m][aI][aI];
-                            aDone = true;
+            for (int time = 0; time <= M; time++) {
+                // time==0 은 이동 전 충전, time>0 부터 이동
+                if (time > 0) {
+                    aI += di[A[time - 1]];
+                    aJ += dj[A[time - 1]];
+                    bI += di[B[time - 1]];
+                    bJ += dj[B[time - 1]];
+                }
+                int best = 0;
+                // A가 i BC, B가 j BC를 선택한다고 가정하고 전부 비교
+                for (int i = 0; i < C; i++) {
+                    for (int j = 0; j < C; j++) {
+                        int aGain = BC[i][aI][aJ];
+                        int bGain = BC[j][bI][bJ];
+                        int sum;
+                        if (i == j) {
+                            // 같은 BC를 동시에 쓰면 둘이 나눠가지므로 합은 그 BC 파워(=aGain=bGain)
+                            sum = Math.max(aGain, bGain);
+                        } else {
+                            sum = aGain + bGain;
                         }
-                    }else if(bDone == false){
-                        if(BC[m][bI][bI] != 0){
-                            totalPower += BC[m][bI][bI];
-                            bDone = true;
-                        }
+                        if (sum > best) best = sum;
                     }
                 }
-            }
+                totalPower += best;
+                }
             System.out.println("#"+(t+1)+" "+totalPower);
         }
-        
     }
-    static void setGraphBfs(int layer,int i,int j,int range, int power){
-        deque = new ArrayDeque<>();
-        deque.add(new int[]{i,j,0});
-        while(!deque.isEmpty()){
-            int [] temp = deque.poll();
-            int nowI = temp[0];
-            int nowJ = temp[1];
-            int count = temp[2];
-            BC[layer][nowI][nowJ] = power;
-            if(count +1 <= range){
-                for(int k=1;k<5;k++){
-                    int ni = i+di[k];
-                    int nj = j+dj[k];
-                    if(ni>=0 && ni<10 && nj>=0 && nj<10){
-                        deque.add(new int[]{ni,nj,count+1});
-                    }
+    static void setGraph(int layer, int i, int j, int range, int power) {
+        for (int r = 0; r < 10; r++) {
+            for (int c = 0; c < 10; c++) {
+                if (Math.abs(r - i) + Math.abs(c - j) <= range) {
+                    BC[layer][r][c] = power;
                 }
             }
         }
-        
     }
 }
+
+      
