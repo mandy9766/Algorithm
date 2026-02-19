@@ -1,4 +1,4 @@
-package Algorithm.d0219;
+package d0219;
 
 import java.io.*;
 import java.util.*;
