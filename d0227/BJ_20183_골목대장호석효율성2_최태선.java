@@ -46,7 +46,7 @@ public class BJ_20183_골목대장호석효율성2_최태선 {
                 end = mid-1;
             }
         }
-        if(minVal != Long.MAX_VALUE)
+        if(minVal != Long.MAX_VALUE)   
             System.out.println(minVal);
         else  
             System.out.println(-1);
