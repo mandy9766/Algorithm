@@ -66,7 +66,7 @@ public class BJ_20183_골목대장호석효율성2_최태선 {
             for(int[] nextNode : graph[nowNum]){
                 int nextNum = nextNode[0];
                 int nextDist = nextNode[1];
-                if(nextDist+nowDist > C)
+                if(nextDist+nowDist > C)  
                     continue;
                 if(nextDist>mid){ //최대 수금액이 더 크면 못감 mid는 이분탐색으로 찾아놓은 값
                     continue;
