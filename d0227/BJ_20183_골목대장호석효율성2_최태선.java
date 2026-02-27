@@ -42,7 +42,7 @@ public class BJ_20183_골목대장호석효율성2_최태선 {
             if(dist[B] == INF){
                 start = mid+1;
             }else{
-                minVal = Math.min(minVal, mid);
+                minVal = Math.min(minVal, mid);  
                 end = mid-1;
             }
         }
