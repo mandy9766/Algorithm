@@ -51,7 +51,7 @@ public class BJ_20183_골목대장호석효율성2_최태선 {
         else  
             System.out.println(-1);
         
-    }  
+    }       
     static void dijkstra(long mid){
         Arrays.fill(dist,INF);
         dist[A] = 0;
