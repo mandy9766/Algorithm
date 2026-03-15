@@ -39,7 +39,7 @@ public class SWEA_7793_오나의여신님_최태선 {
                         akDeque.add(new int[]{i,j});
                     }
                 }
-            }
+            } 
             int result = bfs();
             if(result == -1)
                 System.out.println("#"+t+" GAME OVER");
