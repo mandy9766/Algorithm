@@ -30,7 +30,7 @@ public class BJ_9465_스티커_최태선 {
 			dp[1][1] = arr[0][0] + arr[1][1];
 			for (int i = 2; i < N; i++) {
 				dp[0][i] = Math.max(dp[1][i - 1] + arr[0][i], dp[1][i - 2] + arr[0][i]);
-				dp[1][i] = Math.max(dp[0][i - 1] + arr[1][i], dp[0][i - 2] + arr[1][i]);
+				dp[1][i] = Math.max(dp[0][i - 1] + arr[1][i], dp[1][i - 2] + arr[1][i]);
 			}
 			System.out.println(Math.max(dp[0][N - 1], dp[1][N - 1]));
 		}
