@@ -15,6 +15,7 @@ public class BJ_9465_스티커_최태선 {
 			arr = new int[2][N];
 			dp = new int[2][N];
 			for (int i = 0; i < 2; i++) {
+				int a;
 				StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 				for (int j = 0; j < N; j++) {
 					arr[i][j] = Integer.parseInt(st.nextToken());
