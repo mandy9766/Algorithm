@@ -3,12 +3,10 @@ package m05.d0507;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PG_완주하지못한선수_최태선 {
+public class PG_완주하지못한선수_최태선R {
      Map <String,Integer> parti;
-     Map <String,Integer> compl;
      public String solution(String[] participant, String[] completion) {
           parti = new HashMap<>();
-          compl = new HashMap<>();
           for(String p : participant){
                if(!parti.containsKey(p))
                     parti.put(p,1);
@@ -17,16 +15,10 @@ public class PG_완주하지못한선수_최태선 {
                }
           }
           for(String p : completion){
-               if(!compl.containsKey(p))
-                    compl.put(p,1);
-               else{
-                    compl.put(p,compl.get(p)+1);
-               }
+                    parti.put(p,parti.get(p)-1);
           }
           for(String p : participant){
-               if(!compl.containsKey(p))
-                    return p;
-               if(parti.get(p) != compl.get(p))
+               if(parti.get(p) == 1)
                     return p;
           }
           return "";
